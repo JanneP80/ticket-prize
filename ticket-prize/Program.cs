@@ -25,11 +25,10 @@ namespace ticket_prize // typo: *price
             {
                 message = "Input is NOT a number.";
             }
-
-
+            
             // laske alennus, vain yksi myönnetään, ellei ole Mtk:n jäsen ja opiskelija
             // ikä
-            if (age < 7)
+            else if (age < 7)
             {
 
                 message = string.Format("Lipun hinta: {0}", ticket_price * 0);
@@ -63,16 +62,19 @@ namespace ticket_prize // typo: *price
                             message = string.Format("Lipun hinta: {0}", ticket_price - ticket_price * 0.45 - (ticket_price * 0.45) * 0.15); // student AND mtk price
 
                         }
-                        else
+                        else if (mtk.Equals("no", StringComparison.InvariantCultureIgnoreCase))
                         {
                             message = string.Format("Lipun hinta: {0}", ticket_price - ticket_price * 0.45); // student price
-                        }                                                                             
-
-
-                    }                  
-             
-                        else if (student.Equals("no", StringComparison.InvariantCultureIgnoreCase))
+                        }
+                        else
                         {
+                            message = string.Format("Answer either yes or no.");
+                        }
+
+                    }
+
+                    else if (student.Equals("no", StringComparison.InvariantCultureIgnoreCase))
+                    {
                         Console.Write("Are you a member of Mtk? (yes/no): "); // oletko mtk:n jäsen
                         mtk = Console.ReadLine();
                         if (mtk.Equals("yes", StringComparison.InvariantCultureIgnoreCase))
@@ -80,16 +82,36 @@ namespace ticket_prize // typo: *price
                             message = string.Format("Lipun hinta: {0}", ticket_price - ticket_price * 0.15); // 
                         }
 
+                        else if (mtk.Equals("no", StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            // message = string.Format("Lipun hinta: {0}", ticket_price - ticket_price * 0.45); // student price
+                            message = string.Format("Lipun hinta: {0}", ticket_price);
+                        }
+                        else
+                        {
+                            message = string.Format("Answer either yes or no.");
+                        }
                     }
-                    
-                   
+
+
+                    else
+                    {
+                        message = string.Format("Answer either yes or no.");
                     }
-                
+
+                    //normihinta tänne ?
+
+                }
+                /* else
+                {
+                    message = string.Format("Answer either yes or no.");
+                }
+                */
                 else
                 {
-                // normal price
-                message = string.Format("Lipun hinta: {0}", ticket_price);
-            }
+                    // normal price
+                    message = string.Format("Lipun hinta: {0}", ticket_price);
+                }
             }
 
             // ilmoita lipun hinta
